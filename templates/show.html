@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crud</title>
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">CRUD APP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="emp">Register</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="show">Show All<span class="sr-only">(current)</span></a>
+              </li>
+          </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Details about all Employee</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">USERNAME</th>
+                <th scope="col">FULLNAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">AGE</th>
+                <th scope="col">EDIT</th>
+                <th scope="col">DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>  
+                    <td>{{employee.id}}</td>  
+                    <td>{{employee.uname}}</td>  
+                    <td>{{employee.fname}} {{ employee.lname}}</td>  
+                    <td>{{employee.email }}</td>  
+                    <td>{{employee.age}}</td>
+                    <td>  
+                        <a href="/edit/{{employee.id}}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+                    </td>  
+                    <td>
+                        <a href="/delete/{{employee.id}}">Delete</a>  
+                    </td>
+                </tr>
+                {% endfor  %}  
+            </tbody>
+        </table> 
+        <br>  
+        <br>  
+        <center><a href="/emp" class="btn btn-primary">Add New Record</a></center>       
+    </div>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
